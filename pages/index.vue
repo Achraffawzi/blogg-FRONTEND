@@ -55,7 +55,7 @@
     </section>
 
     <!-- Big Post -->
-    <section class="big-post">
+    <section class="big-post py-16">
       <v-container class="px-5">
         <v-img
           :src="require('@/assets/images/banner.jpg')"
@@ -75,18 +75,41 @@
         </v-img>
       </v-container>
     </section>
+
+    <!-- Posts -->
+    <section class="posts py-16">
+      <v-container class="d-flex align-center justify-center flex-wrap">
+        <div class="mx-5 mb-10">
+          <rounded-post-card />
+        </div>
+        <div class="mx-5 mb-10">
+          <rounded-post-card />
+        </div>
+        <div class="mx-5 mb-10">
+          <rounded-post-card />
+        </div>
+        <div class="mx-5 mb-10">
+          <rounded-post-card />
+        </div>
+        <div class="mx-5 mb-10">
+          <rounded-post-card />
+        </div>
+      </v-container>
+    </section>
   </div>
 </template>
 
 <script>
 import PostCard from "@/components/home/PostCard.vue";
 import Publisher from "@/components/home/Publisher.vue";
+import RoundedPostCard from '../components/home/RoundedPostCard.vue';
 export default {
   name: "Index",
 
   components: {
     PostCard,
-    Publisher
+    Publisher,
+    RoundedPostCard
   }
 };
 </script>
@@ -97,17 +120,17 @@ export default {
     url("@/assets/images/banner.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  // background-position: center center;
+  /* // background-position: center center; */
   min-height: 350px;
 
   .banner-post-card-container-1 {
-    // width: 200px;
+    /* // width: 200px; */
     max-width: 490px;
   }
 
   .banner-post-card-container-2,
   .banner-post-card-container-3 {
-    // width: 50px;
+    /* // width: 50px; */
     max-width: 300px;
   }
 }
