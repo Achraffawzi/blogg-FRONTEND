@@ -2,30 +2,26 @@
   <div class="rounded-post-card">
     <v-card class="mx-auto rounded-t-xl" max-width="344">
       <v-img
-        :src="require(`@/assets/images/banner.jpg`)"
+        :src="`http://localhost:3001/uploads/images/${post.image}`"
         height="200px"
         gradient="rgba(0,0,0,.5), rgba(0,0,0,.5)"
         class="d-flex align-end pa-5"
       >
         <div>
           <v-card-title class="white--text subtitle-1">
-            In publishing and graphic design, Lorem ipsum is a placeholder text
-            commonly.
+            {{ post.title }}
           </v-card-title>
           <publisher :width="30" />
         </div>
       </v-img>
 
       <v-card-text>
-        In publishing and graphic design, Lorem ipsum is a placeholder text
-        commonly.
-        In publishing and graphic design, Lorem ipsum is a placeholder text
-        commonly.
+        {{ post.content }}
       </v-card-text
       >
 
       <v-card-actions>
-        <read-more-button />
+        <read-more-button :id="post._id"/>
       </v-card-actions>
     </v-card>
   </div>
@@ -36,7 +32,10 @@ import ReadMoreButton from "../ReadMoreButton.vue";
 import Publisher from "./Publisher.vue";
 export default {
   components: { ReadMoreButton, Publisher },
-  name: "RoundedPostCard"
+
+  name: "RoundedPostCard",
+
+  props: ["post"]
 };
 </script>
 

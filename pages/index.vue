@@ -58,18 +58,17 @@
     <section class="big-post py-16">
       <v-container class="px-5">
         <v-img
-          :src="require('@/assets/images/banner.jpg')"
+          :src="`http://localhost:3001/uploads/images/${bigPost.image}`"
           height="300"
           class="px-16 py-5 d-flex align-end"
         >
           <div class="post-body">
             <p class="white--text mb-5" style="font-size: 22px; width: 50%">
-              In publishing and graphic design, Lorem ipsum is a placeholder
-              text commonly.
+              {{ bigPost.title }}
             </p>
             <div style="width: 50%;" class="d-flex justify-space-between align-center">
               <Publisher />
-              <read-more-button />
+              <read-more-button :id="bigPost._id"/>
             </div>
           </div>
         </v-img>
@@ -79,20 +78,8 @@
     <!-- Posts -->
     <section class="posts py-16">
       <v-container class="d-flex align-center justify-center flex-wrap">
-        <div class="mx-5 mb-10">
-          <rounded-post-card />
-        </div>
-        <div class="mx-5 mb-10">
-          <rounded-post-card />
-        </div>
-        <div class="mx-5 mb-10">
-          <rounded-post-card />
-        </div>
-        <div class="mx-5 mb-10">
-          <rounded-post-card />
-        </div>
-        <div class="mx-5 mb-10">
-          <rounded-post-card />
+        <div class="" v-for="(post, index) in getPosts" :key="index">
+          <rounded-post-card :post="post" />
         </div>
       </v-container>
     </section>
@@ -110,7 +97,31 @@ export default {
     PostCard,
     Publisher,
     RoundedPostCard
-  }
+  },
+
+  asyncData({ $axios }) {
+    return $axios.$get('/posts').then((posts) => {
+      return {
+        posts
+      }
+    })
+  },
+
+  data() {
+    return {
+      posts: null,
+    }
+  },
+
+  computed: {
+    getPosts() {
+      return this.posts
+    },
+
+    bigPost() {
+      return this.posts[0]
+    }
+  },
 };
 </script>
 
